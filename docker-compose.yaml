@@ -419,8 +419,6 @@ services:
       - "8888"
     build:
       context: ./jupyter-lab
-    depends_on:
-      - airflow-proxy
     volumes:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
