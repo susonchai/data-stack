@@ -356,7 +356,8 @@ services:
     build:
       context: ./jupyter-lab
     volumes:
-      - ./dags:/home/jovyan/work
+      - ./dags:/home/jovyan/work/dags
+    user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-50000}"
     environment:
       - PYTHONPATH=/opt/airflow/
     command: jupyter lab --port 8888 --allow-root
