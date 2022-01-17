@@ -351,8 +351,8 @@ services:
   jupyter:
     container_name: jupyter-lab
     restart: unless-stopped
-    expose: 
-      - "8888"
+    ports:
+      - 8888:8888
     build:
       context: ./jupyter-lab
     volumes:
