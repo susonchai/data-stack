@@ -157,27 +157,8 @@ RUN conda install --repodata-fn repodata.json -c conda-forge --yes --freeze-inst
   jupyter_nbextensions_configurator \
   jupyter_contrib_nbextensions \
   papermill \
-  psycopg2 \
+  psycopg2-binary \
   cloudpickle \
-  # EO / Weather specific
-  bokeh \
-  bottleneck \
-  cartopy \
-  cmocean \
-  descartes \
-  geos \
-  geopandas \
-  iris \
-  iris-grib \
-  # metpy
-  # metview-batch
-  magics \
-  netcdf4 \
-  protobuf \
-  pynio \
-  shapely \
-  siphon \
-  tini \
   # Cleanup tasks as from https://jcristharif.com/conda-docker-tips.html
   && conda clean -tipsy \
   && fix-permissions $CONDA_DIR \
