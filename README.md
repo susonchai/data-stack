@@ -11,6 +11,6 @@ This work modified based on below repository:
 * Start the stock : `sudo docker-compose up -d --build`
 * Stop containers : `sudo docker-compose down`
 * View Container : `sudo docker ps`
-* Go inside a container : `sudo docker-compose exec -it <service-id> bash`
+* Go inside a container : `sudo docker exec -it <service-id> bash`
 * See logs of a container: `sudo docker logs <service-id>`
 * Monitor containers : `sudo docker stats`

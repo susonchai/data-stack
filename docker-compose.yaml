@@ -356,9 +356,9 @@ services:
     build:
       context: ./jupyter-lab
     volumes:
-      - ./dags:/opt/airflow/dags
-      - ./scripts:/opt/airflow/scripts
-      - ./notebooks:/opt/airflow/notebooks
+      - ./dags:/home/jovyan/work/dags
+      - ./scripts:/home/jovyan/work/scripts
+      - ./notebooks:/home/jovyan/work/notebooks
     environment:
       - PYTHONPATH=/opt/airflow/
     command: jupyter lab --port 8888 --allow-root
