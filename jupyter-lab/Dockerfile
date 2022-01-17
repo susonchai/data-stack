@@ -8,17 +8,9 @@ ARG ROOT_CONTAINER=ubuntu:focal
 FROM $ROOT_CONTAINER
 
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
-# ARG NB_USER="jovyan"
-# ARG NB_UID="1000"
-# ARG NB_GID="100"
-
-# A few basics
-ENV SHELL /bin/bash
-ARG NB_USER="airflow"
-
-# Mapping for the "fix permissions script"
-ARG NB_UID=$AIRFLOW_UID
-ARG NB_GID=$AIRFLOW_GID
+ARG NB_USER="jovyan"
+ARG NB_UID="1000"
+ARG NB_GID="100"
 
 # Fix DL4006
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -170,10 +162,6 @@ USER root
 RUN sed -re "s/c.NotebookApp/c.ServerApp/g" \
     /etc/jupyter/jupyter_notebook_config.py > /etc/jupyter/jupyter_server_config.py && \
     fix-permissions /etc/jupyter/
-
-# Fix permissions on /etc/jupyter as root
-USER root
-RUN fix-permissions /etc/jupyter/
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}
