@@ -136,10 +136,8 @@ RUN conda install --repodata-fn repodata.json --quiet --yes \
   fix-permissions $CONDA_DIR && \
   fix-permissions ${HOME}
 
-RUN conda update -n base -c defaults conda
-
 # Essential python data analysis librairies
-RUN conda install --repodata-fn repodata.json -c conda-forge --yes --freeze-installed \
+RUN conda install --repodata-fn repodata.json --override-channels -c main -c conda-forge boost --yes --freeze-installed  \
   dask \
   matplotlib-base \
   numpy \
