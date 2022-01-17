@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.7
 
 RUN git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it && \
   bash ~/.bash_it/install.sh --silent
@@ -43,20 +43,20 @@ RUN pip install --upgrade pip && \
     jupyterlab-spreadsheet 
 
 COPY bin/entrypoint.sh /usr/local/bin/
-COPY config/ /root/.jupyter/
+COPY jupyter_notebook_config.py /root/.jupyter/
 
 EXPOSE 8888
 VOLUME /notebooks
 WORKDIR /notebooks
 ENTRYPOINT ["entrypoint.sh"]
 
-# Copy local files as late as possible to avoid cache busting
-#COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
-COPY jupyter_notebook_config.py /etc/jupyter/
+# # Copy local files as late as possible to avoid cache busting
+# #COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
+# COPY jupyter_notebook_config.py /etc/jupyter/
 
-# Fix permissions on /etc/jupyter as root
-USER root
-RUN fix-permissions /etc/jupyter/
+# # Fix permissions on /etc/jupyter as root
+# USER root
+# RUN fix-permissions /etc/jupyter/
 
 # Switch back to user "airflow" to avoid accidental container runs as root
 USER $NB_UID
