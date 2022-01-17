@@ -144,6 +144,10 @@ RUN mamba install --quiet --yes \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 
+RUN fix-permissions "/home/${NB_USER}/dags" && \
+  fix-permissions "/home/${NB_USER}/notebooks" && \
+  fix-permissions "/home/${NB_USER}/scripts"
+
 EXPOSE 8888
 
 # Configure container startup
