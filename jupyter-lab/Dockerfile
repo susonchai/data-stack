@@ -137,7 +137,7 @@ RUN conda install --repodata-fn repodata.json --quiet --yes \
   fix-permissions ${HOME}
 
 # Essential python data analysis librairies
-RUN conda install --repodata-fn repodata.json --override-channels -c main -c conda-forge --yes --freeze-installed \
+RUN conda install --repodata-fn repodata.json -c conda-forge --yes --freeze-installed \
   dask \
   matplotlib-base \
   numpy \
@@ -159,6 +159,25 @@ RUN conda install --repodata-fn repodata.json --override-channels -c main -c con
   papermill \
   psycopg2-binary \
   cloudpickle \
+  # EO / Weather specific
+  bokeh \
+  bottleneck \
+  cartopy \
+  cmocean \
+  descartes \
+  geos \
+  geopandas \
+  iris \
+  iris-grib \
+  # metpy
+  # metview-batch
+  magics \
+  netcdf4 \
+  protobuf \
+  pynio \
+  shapely \
+  siphon \
+  tini \
   # Cleanup tasks as from https://jcristharif.com/conda-docker-tips.html
   && conda clean -tipsy \
   && fix-permissions $CONDA_DIR \
