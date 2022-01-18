@@ -152,8 +152,10 @@ CMD ["start-notebook.sh"]
 
 # Copy local files as late as possible to avoid cache busting
 COPY start.sh start-notebook.sh start-singleuser.sh /usr/local/bin/
+
 # Currently need to have both jupyter_notebook_config and jupyter_server_config to support classic and lab
 COPY jupyter_notebook_config.py /etc/jupyter/
+COPY jupyter_notebook_config.py /home/jovyan/.jupyter/
 
 # Fix permissions on /etc/jupyter as root
 USER root
@@ -162,6 +164,11 @@ USER root
 RUN sed -re "s/c.NotebookApp/c.ServerApp/g" \
     /etc/jupyter/jupyter_notebook_config.py > /etc/jupyter/jupyter_server_config.py && \
     fix-permissions /etc/jupyter/
+
+# Prepare upgrade to JupyterLab V3.0 #1205
+RUN sed -re "s/c.NotebookApp/c.ServerApp/g" \
+    /home/jovyan/.jupyter/jupyter_notebook_config.py > /home/jovyan/.jupyter/jupyter_server_config.py && \
+    fix-permissions /home/jovyan/.jupyter/
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER ${NB_UID}

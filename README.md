@@ -14,3 +14,4 @@ This work modified based on below repository:
 * Go inside a container : `sudo docker exec -it <service-id> bash`
 * See logs of a container: `sudo docker logs <service-id>`
 * Monitor containers : `sudo docker stats`
+* Default password for Jupyter: `P@ssw0rd`

@@ -2,3 +2,33 @@
 /logs
 /plugins
 /temporal
+
+####
+# Django 
+####
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media
+
+####
+# Settings
+####
+data
+
+####
+# Environments
+####
+.venv/
+venv/
+myenv/
+
+####
+# Unit Test & 
+# Coverage Reports
+####
+htmlcov/
+.coverage
+.pytest_cache
